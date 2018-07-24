@@ -1,0 +1,26 @@
+金蝶EAS系统数据库：
+用户信息表：T_PM_USER
+员工信息表：T_BD_PERSON
+供应商基础资料表：T_BD_SUPPLIER
+入账通知单：T_AP_OtherBill
+查询语句：
+select t.fnumber,t.fcreatetime,t.fasstactnumber,t.fasstactname_l2,item.fname_l2,t.famount,t.fbillstatus from T_AP_OTHERBILL t
+inner join T_AP_OTHERBILLENTRY e on t.fid = e.fparentid
+left join T_SCM_EXPENSEITEM item on e.fexpenseitemid = item.fid
+where e.fseq = 1
+单据对应文字：1保存2提交3审核4作废
+付款申请单：T_AP_PayRequestBill
+查询语句：
+select t.fnumber,t.fcreatetime,e.fasstactnumber,e.fasstactname,t.frequestreason,e.fauditamount,t.fbillstatus from T_AP_PAYREQUESTBILL t
+inner join T_AP_PayRequestBillEntry e on t.fid = e.fparentid
+单据状态对应文字：1保存2提交3审核4作废
+付款通知单：T_CAS_PAYMENTBILL
+查询语句：
+select t.fnumber,t.fcreatetime,t.fpayeenumber,t.fpayeename,t.famount,t.fbillstatus from T_CAS_PAYMENTBILL t
+单据状态对应文字：10保存11提交12审核15已付款
+
+单独创建数据库
+供应商用户表：t_supplier_user
+字段名：    id   fnumber	fname	fpassword	fstatus	 	fcreatetime	fupdatetime
+字段描述： 主键  编码		名称	密码		状态 		创建时间	修改时间
+单据状态对应文字: 0提交1审批通过2审批拒绝
