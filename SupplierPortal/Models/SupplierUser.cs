@@ -8,7 +8,7 @@ using Castle.ActiveRecord;
 namespace SupplierPortal.Models
 {
   [ActiveRecord]
-  public class SupplierUser : ActiveRecordBase<SupplierUser>
+  public class SupplierUser : GysmhActiveRecordBase<SupplierUser>
   {
     [PrimaryKey]
     [Display(Name = "主键")]
@@ -27,6 +27,10 @@ namespace SupplierPortal.Models
     [Required]
     [Display(Name = "密码")]
     public String Password {get; set; }
+
+    [Required]
+    [Display(Name = "确认密码")]
+    public String ConfirmPassword {get; set; }
 
     [Property] 
     [Display(Name = "状态")]

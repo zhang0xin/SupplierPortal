@@ -22,8 +22,16 @@ namespace SupplierPortal.Controllers
     [HttpPost]
     public ActionResult Register(SupplierUser su)
     {
-      su.Id = Guid.NewGuid().ToString();
-      su.Save();
+      if (su.Password != su.ConfirmPassword)
+      {
+	ModelState.AddModelError("confirm password", "密码和确认密码输入不匹配");
+      }
+
+      if (ModelState.IsValid)
+      {
+        su.Id = Guid.NewGuid().ToString();
+        su.Save();
+      }
       return View();
     }
   }
